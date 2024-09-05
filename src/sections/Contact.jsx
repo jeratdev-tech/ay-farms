@@ -1,10 +1,37 @@
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_cbo20h7",
+        "template_uoq9j04",
+        form.current,
+        "qopzs3LgsY1-Ao458"
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+
+    e.target.reset();
+  };
+
   return (
     <section
       id="contact"
-      className="min-h-screen  flex flex-col justify-center items-center py-12"
+      className="min-h-screen flex flex-col justify-center items-center py-12"
     >
-      <div className="max-w-4xl w-full mx-auto  shadow-3xl  rounded-lg p-8 md:p-12">
+      <div className="max-w-4xl w-full mx-auto shadow-3xl rounded-lg p-8 md:p-12">
         <h2 className="text-3xl font-bold font-palanquin text-center text-black mb-8">
           Contact Us
         </h2>
@@ -26,7 +53,7 @@ const Contact = () => {
             </p>
             <p className="text-black mb-2">
               Email:{" "}
-              <a href="mailto:info@ayfarms.com" className="text-gray-900">
+              <a href="" className="text-gray-900">
                 info@ayfarms.com
               </a>
             </p>
@@ -63,10 +90,11 @@ const Contact = () => {
             <h3 className="text-xl font-semibold text-gray-700 mb-4">
               Send Us a Message
             </h3>
-            <form className="space-y-4">
+            <form onSubmit={sendEmail} ref={form} className="space-y-4">
               <div>
                 <label className="block text-gray-700">Name</label>
                 <input
+                  name="user_name"
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                   placeholder="Your Name"
@@ -75,6 +103,7 @@ const Contact = () => {
               <div>
                 <label className="block text-gray-700">Email</label>
                 <input
+                  name="user_email"
                   type="email"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                   placeholder="Your Email"
@@ -83,6 +112,7 @@ const Contact = () => {
               <div>
                 <label className="block text-gray-700">Phone Number</label>
                 <input
+                  name="user_phone"
                   type="tel"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                   placeholder="Your Phone Number"
@@ -91,6 +121,7 @@ const Contact = () => {
               <div>
                 <label className="block text-gray-700">Message</label>
                 <textarea
+                  name="message"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                   placeholder="Your Message"
                   rows="4"
