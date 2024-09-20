@@ -1,5 +1,11 @@
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faTwitter,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Contact = () => {
   const form = useRef();
@@ -68,20 +74,26 @@ const Contact = () => {
               <a
                 href="https://web.facebook.com/people/AY-Agro-Hub/61557348143410/"
                 className="text-blue-600 hover:text-blue-800"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Facebook
+                <FontAwesomeIcon icon={faFacebook} size="2x" />
               </a>
               <a
                 href="https://twitter.com/yourprofile"
                 className="text-blue-400 hover:text-blue-600"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Twitter
+                <FontAwesomeIcon icon={faTwitter} size="2x" />
               </a>
               <a
                 href="https://linkedin.com/yourprofile"
                 className="text-blue-700 hover:text-blue-900"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                LinkedIn
+                <FontAwesomeIcon icon={faLinkedin} size="2x" />
               </a>
             </div>
           </div>
